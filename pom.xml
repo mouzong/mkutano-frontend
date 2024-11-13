@@ -3,14 +3,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <distributionManagement>
     <repository>
-      <id>nexus</id>
+      <id>nexus-creds</id>
       <name>Releases</name>
-      <url>http://nexus-repo.it4innov.fr/repository/mkutano-repo/</url>
+      <url>http://192.168.1.153:8081/repository/release/</url>
     </repository>
     <snapshotRepository>
-      <id>nexus</id>
-      <name>Snapshot</name>
-      <url>http://nexus-repo.it4innov.fr/repository/maven-snapshots/</url>
+      <id>nexus-creds</id>
+      <name>Snapshots</name>
+      <url>http://192.168.1.153:8081/repository/snapshot/</url>
     </snapshotRepository>
   </distributionManagement>
 
@@ -155,7 +155,7 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.8</version>
+        <version>0.8.12</version>
         <executions>
           <execution>
             <goals>

@@ -1,0 +1,52 @@
+pipeline {
+    agent any
+    environment{
+        FILEPATH_SNAPSHOT='/var/jenkins_home/snapshots.txt'
+        // HARBOR_REGISTRY = 'http://217.160.24.222/harbor/projects'
+
+    }
+
+    parameters{
+        choice(name: 'BUILD_TYPE', choices: ['SNAPSHOT', 'RELEASE'], description: 'Choisissez le type de build')
+        string(name: 'VERSION', defaultValue: '1.0.0', description: 'La version de la release')
+    }
+
+    stages{
+        stage("clean workspace"){
+            steps{
+                cleanWs()
+            }
+        }
+
+        stage("checkout project"){
+            steps{
+                script{
+                    git branch: env.BRANCH_NAME, 
+                    url:'https://github.com/mouzong/mkutano-frontend.git'
+                    //credentialsId:'Github_user'
+                }
+            }
+        }
+        stage("build artefact"){
+            steps{
+                script{
+                if(params.BUILD_TYPE=='RELEASE'){
+                    sh "mvn versions:set -DnewVersion=${params.VERSION}"
+                }else{
+                    sh "mvn versions:set -DnewVersion=${params.VERSION}-${params.BUILD_TYPE}"
+                }
+                    sh 'mvn clean package' //--settings /var/jenkins_home/.m2/settings.xml'
+                }
+            }
+        }
+        stage("Push to Nexus"){
+            steps{
+                script{
+                    echo "Bonjour step 4"
+                    sh "mvn clean deploy -P nexus -DskipTests --settings /var/lib/jenkins/.m2/settings.xml"
+
+                }
+            }
+        }
+    }
+}
