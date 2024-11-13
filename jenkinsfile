@@ -39,7 +39,9 @@ pipeline {
                 }else{
                     sh "mvn versions:set -DnewVersion=${params.VERSION}-${params.BUILD_TYPE}"
                 }
-                    sh 'mvn clean package' //--settings /var/jenkins_home/.m2/settings.xml'
+                    sh 'mvn clean install -U' //--settings /var/jenkins_home/.m2/settings.xml'
+
+                    sh 'mvn package -DskipTests'
                 }
             }
         }
