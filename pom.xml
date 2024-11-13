@@ -1,23 +1,12 @@
 <?xml version="1.0"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <distributionManagement>
-    <repository>
-      <id>nexus-creds</id>
-      <name>Releases</name>
-      <url>http://192.168.1.153:8081/repository/release/</url>
-    </repository>
-    <snapshotRepository>
-      <id>nexus-creds</id>
-      <name>Snapshots</name>
-      <url>http://192.168.1.153:8081/repository/snapshot/</url>
-    </snapshotRepository>
-  </distributionManagement>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.it4innov</groupId>
   <artifactId>code-frontend</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.2-SNAPSHOT</version>
+
   <properties>
     <compiler-plugin.version>3.11.0</compiler-plugin.version>
     <maven.compiler.release>17</maven.compiler.release>
@@ -30,6 +19,20 @@
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.1.2</surefire-plugin.version>
   </properties>
+
+  <distributionManagement>
+    <repository>
+      <id>admin</id>
+      <name>Releases</name>
+      <url>http://192.168.1.153:8081/repository/release/</url>
+    </repository>
+    <snapshotRepository>
+      <id>admin</id>
+      <name>Snapshots</name>
+      <url>http://192.168.1.153:8081/repository/snapshot/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -41,6 +44,7 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
   <dependencies>
     <dependency>
       <groupId>io.quarkus</groupId>
