@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    
+    tools{
+        jdk 'OpenJDK 17'
+    }
     environment{
         FILEPATH_SNAPSHOT='/var/jenkins_home/snapshots.txt'
         // HARBOR_REGISTRY = 'http://217.160.24.222/harbor/projects'
